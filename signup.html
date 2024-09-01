@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: hsla(200, 40%, 30%, 0.4);
+            background-image: url('https://i.pinimg.com/originals/bc/78/ea/bc78ea2aa84a3776d6b54d6a04e9da86.gif');
+            background-repeat: repeat-x;
+            background-size: full;
+            animation: 50s para infinite linear;
+        }
+
+        .container {
+            margin-top: 200px;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            margin-left: 400px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 40px; /* Space for the eye icon */
+        }
+
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            z-index: 1;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar img {
+            height: 40px; /* Adjust size as needed */
+            margin-right: 15px;
+        }
+
+        .navbar .nav-links {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .home-button {
+            margin-left: auto;
+            margin-right: 20px; /* Adjust this value to move the button more to the right */
+            padding: 8px 15px; /* Make the button slightly larger for better visibility */
+            background-color: #b7c0c49c; /* Optional: Change button color to make it stand out */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .navbar .home-button:hover {
+            background-color: #b7c0c450; /* Optional: Hover effect for better user experience */
+        }
+
+        .content {
+            margin-top: 60px; /* Adjust based on navbar height */
+            padding: 20px;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://i.ibb.co/GvQnyX9/DOCTYPE-html-html-lang-en-head-meta-charset-UTF-8-meta-name-viewport-content-width-device-width-init.png" alt="Logo" class="w-16 h-16 text-white p-2 bg-indigo-500 rounded-full" />
+        <span class="ml-3 text-xl">DronEye</span>
+        <div class="nav-links">
+        </div>
+        <button class="home-button" onclick="window.location.href='indexx.html'">Home</button>
+    </div>
+    <div class="container">
+        <div id="message" class="message"></div>
+        <div id="errorMessage" class="error-message"></div>
+
+        <div id="loginForm">
+            <h2>Login</h2>
+            <form id="loginFormElement">
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" name="username" required>
+
+                <div class="password-container">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                    <img src="https://img.icons8.com/ios-filled/50/000000/invisible.png" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility(event)">
+                </div>
+
+                <label for="loginUserType">Login as:</label>
+                <select id="loginUserType" name="userType" required>
+                    <option value="alert">Alert User</option>
+                    <option value="public">Public User</option>
+                    <option value="admin">Admin</option>
+                    <option value="data-entry">Data Entry User</option>
+                </select>
+
+                <button type="button" onclick="handleLogin()">Login</button>
+            </form>
+            <p>Don't have an account? <a href="javascript:void(0);" onclick="showForm('signup')">Sign Up</a></p>
+        </div>
+
+        <div id="signupForm" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="signupFormElement" onsubmit="handleSignup(event)">
+                <label for="signupUsername">Username:</label>
+                <input type="text" id="signupUsername" name="username" required>
+
+                <div class="password-container">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" name="password" required>
+                    <img src="https://img.icons8.com/ios-filled/50/000000/invisible.png" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility(event)">
+                </div>
+
+                <label for="signupUserType">Register as:</label>
+                <select id="signupUserType" name="userType" required>
+                    <option value="alert">Alert User</option>
+                    <option value="public">Public User</option>
+                    <option value="admin">Admin</option>
+                    <option value="data-entry">Data Entry User</option>
+                </select>
+
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="javascript:void(0);" onclick="showForm('login')">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        const existingUsers = {
+            'adminUser': { password: 'adminPass', type: 'admin' },
+            'dataEntryUser': { password: 'dataEntryPass', type: 'data-entry' },
+            'alertUser': { password: 'alertPass', type: 'alert' },
+            'publicUser': { password: 'publicPass', type: 'public' }
+        };
+
+        function showForm(formType) {
+            document.getElementById('loginForm').style.display = formType === 'login' ? 'block' : 'none';
+            document.getElementById('signupForm').style.display = formType === 'signup' ? 'block' : 'none';
+            document.getElementById('message').style.display = 'none'; // Hide message
+            document.getElementById('errorMessage').style.display = 'none'; // Hide error message
+        }
+
+        function handleSignup(event) {
+            event.preventDefault(); // Prevent actual form submission
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (existingUsers[username]) {
+                document.getElementById('errorMessage').textContent = 'Account already exists.';
+                document.getElementById('errorMessage').style.display = 'block';
+            } else {
+                // Simulate saving user
+                existingUsers[username] = { password: password, type: document.getElementById('signupUserType').value };
+
+                // Display confirmation message
+                document.getElementById('message').textContent = 'Signup successful! Redirecting to login page...';
+                document.getElementById('message').style.display = 'block';
+
+                // Clear signup form data
+                document.getElementById('signupFormElement').reset();
+
+                // Redirect after 2 seconds
+                setTimeout(function() {
+                    showForm('login');
+                }, 2000);
+            }
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const userType = document.getElementById('loginUserType').value;
+
+            if (existingUsers[username] && existingUsers[username].password === password && existingUsers[username].type === userType) {
+                // Redirect based on user type
+                switch (userType) {
+                    case 'admin':
+                        window.location.href = 'admin.html';
+                        break;
+                    case 'data-entry':
+                        window.location.href = 'data-entry.html';
+                        break;
+                    case 'alert':
+                        window.location.href = 'alert-user.html';
+                        break;
+                    case 'public':
+                        window.location.href = 'public.html';
+                        break;
+                    default:
+                        window.location.href = 'dashboard.html';
+                        break;
+                }
+            } else {
+                document.getElementById('errorMessage').textContent = 'Invalid credentials. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        function togglePasswordVisibility(event) {
+            const passwordInput = event.target.previousElementSibling;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                event.target.src = 'https://img.icons8.com/ios-filled/50/000000/visible.png';
+            } else {
+                passwordInput.type = 'password';
+                event.target.src = 'https://img.icons8.com/ios-filled/50/000000/invisible.png';
+            }
+        }
+    </script>
+</body>
+</html>
